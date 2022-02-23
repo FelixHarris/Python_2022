@@ -1,0 +1,6 @@
+print("Felix Harrison")
+print(84*24)
+print(15)
+print("King's High School")
+print("2047")
+print("115")
