@@ -1,3 +1,4 @@
+"""
 player_lives=21#1
 player_username="riley"#2
 player_money=1#3
@@ -21,5 +22,36 @@ print("\n")
 user_chocolate=5#15
 user_score=2#16
 user_high_score=3#17
-laps=2%3#18
-player_ammo=12%30
+current_track=2#18
+current_ammo_amount=21#19
+current_gear=0#20
+current_speed=("2km/hr")#21
+"""
+money=200#1
+hat=20
+top=30
+pants=15
+belt=60
+shoes=40
+print(money)#2
+print(f"Do you want to buy this hat it will cost {hat}")#3
+print(money-hat)#4/5
+
+
+print(money)#6
+print(f"Do you want to buy this hat it will cost {top}")
+print(money-top)
+
+
+print(money)
+print(f"Do you want to buy this hat it will cost {pants}")
+print(money-pants)
+
+
+print(money)
+print(f"Do you want to buy this hat it will cost {belt}")
+print(money-belt)
+
+print(money)
+print(f"Do you want to buy this hat it will cost {shoes}")
+print(money-shoes)
