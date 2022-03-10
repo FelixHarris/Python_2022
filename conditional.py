@@ -39,8 +39,8 @@ score=0
 question1=int(input("How many friends does Riley have?"))
 
 if question1 == 0:
-	print(score+1)
-
+ score+=1
+ print("Correct")
 else:
 	print("Wrong")
 
@@ -49,12 +49,35 @@ print("\n")
 question2=input("True or False does Riley have any friends?")
 
 if question2.lower()== "false":
-	print(score+1)
-
+ score+=1
+ print("correct")
 else:
 	print("Wrong")
 
 print("\n")
 
 question3=input("How many friends does Riley have.\n A)1 B)2 C)3 D)0")
+if question3.lower()=="d":
+ score+=1
+ print("correct")
+else:
+	print("Wrong")
 
+print("\n")
+
+question4=input("What statement is true A)Riley has a lot of friends B)Riley has a few friends C)Riley has no friends. ")
+if question4.lower()=="c":
+	score+=1
+	print("Correct")
+else:
+	print("Wrong")
+
+question5=input("How many friends does Felix have?")
+if question5.lower()=="everyone":
+	score+=1
+	print("correct")
+else:
+	print("Wrong")
+print(score)
+fibonacci=[0,1,1,2,3,5,8,13,21,34]
+print(fibonacci)
