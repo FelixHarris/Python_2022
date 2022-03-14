@@ -22,7 +22,7 @@ books.append("Witcher 2")
 books.append("Witcher 3")
 books.append("Witcher 4")
 print(','.join(books))
-"""
+
 pizza_toppings=[]
 pizza_toppings1=input("What pizza toppings do you want?")
 if pizza_toppings1 != "":
@@ -44,5 +44,8 @@ if pizza_toppings1 != "":
 	pizza_toppings.append(pizza_toppings1)
 print(pizza_toppings)
 
-
+"""
 fruits["banana","deez nutz","Riley","Apple","Orange"]
+fruits1=input("Name a fruit")
+if fruis1 != fruits:
+print tha
