@@ -45,7 +45,8 @@ docking=Room("""
 	Riley.""")
 bridge=Room("""
 	Etika""")
-escape_pods(""")
+escape_pods=Room("""
+	Time to abandon ship""")
 
 
 current_room=spaceship
@@ -67,9 +68,22 @@ def enter_spaceship():
 		print(current_room)
 
 
+spaceship.east=hallway
+spaceship.south=quarters
+hallway.east=bridge
+hallway.north=cargo
+cargo.east=docking
+cargo.south=hallway
+quarters.east=mess_hall
+bridge.south=escape_pods
 
-
-
+@when ("go DIRECTION")
+def travel(direction):
+	global current_room
+	if direction in current_room.exits():
+		current_room=current_room.exit(direction)
+		print(f"You go{direction}.")
+		print(current_room)
 
 def main():
 	start()
