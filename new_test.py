@@ -1,6 +1,6 @@
 from adventurelib import*
 
-
+Room.items=Bag()
 
 
 
@@ -50,7 +50,7 @@ escape_pods=Room("""
 
 
 current_room=spaceship
-
+inventory=Bag()
 
 @when("enter airlock")
 @when("enter spaceship")
@@ -77,6 +77,26 @@ cargo.south=hallway
 quarters.east=mess_hall
 bridge.south=escape_pods
 
+Item.description=""#this adds a blank description to each item
+
+mess_hall.items.add(red_keycard)
+cargo.items.add(knife)
+knife=Item("a dirty knife","Knife")
+knife.description="the knife has a dull sheen to it but it looks rather sharp."
+
+red_keycard= Item("A red keycard","Keycard","red card") 
+red_keycard.description="Its a red keycard. It probably opens a door or a locker."
+
+red_button=Item("Red button","Button")
+red_button.description=("Vote out the imposter")
+
+
+bat=Item("bat")
+red_button.description=("its a bat")
+
+
+
+
 @when ("go DIRECTION")
 def travel(direction):
 	global current_room
@@ -84,6 +104,15 @@ def travel(direction):
 		current_room=current_room.exit(direction)
 		print(f"You go{direction}.")
 		print(current_room)
+
+@when("look")
+def look():
+	print(current_room)
+	print(f"there are exits to the{current_room.exits()}.")
+	if len(current_room.titles) > 0:
+		print("You ")
+
+
 
 def main():
 	start()
