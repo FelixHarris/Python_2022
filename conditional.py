@@ -65,7 +65,6 @@ else:
 
 print("\n")
 
-<<<<<<< HEAD
 question4=input("What statement is true A)Riley has a lot of friends B)Riley has a few friends C)Riley has no friends. ")
 if question4.lower()=="c":
 	score+=1
@@ -80,8 +79,3 @@ if question5.lower()=="everyone":
 else:
 	print("Wrong")
 print(score)
-fibonacci=[0,1,1,2,3,5,8,13,21,34]
-print(fibonacci)
-=======
-joe
->>>>>>> 2e1c4af1e328ab6f78eee8d8d76941c9352e3338
