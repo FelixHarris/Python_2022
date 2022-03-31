@@ -27,7 +27,7 @@ open_lab = Room (""" As you walk in your nose achs in pain after smelling the ch
 
 
 Supply_Room = Room(""" The room is stacked full of boxes, chemicals, and other useful equipment. 
-	One thing catches your eye, a hazmat suit.")
+	One thing catches your eye, a hazmat suit.""")
 
 
 def main():
