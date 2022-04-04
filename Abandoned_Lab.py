@@ -51,9 +51,12 @@ computation_dry_lab = Room(""" Computation Dry Lab
 	You walk into the room, it seems to be a normal lab. 
 	There are lab coats hanging from a wall, one lab coat has has something in its pocket. """)
 
-specialized_wet_lab=Room("""""")
+specialized_wet_lab=Room(""" Specialized_Wet
+	""")
 
-security_room=Room("""""")
+security_room=Room(""" Security Room
+	On the south wall there are monitors all over the wall showing different rooms that you have been in.
+	Underneath those monitors is a giant terminal covered""")
 
 cloning_room=Room("""Cloning Room
 	As you enter the cloning room you feel some familiarity as if youve been here before.
@@ -99,7 +102,7 @@ specialized_wet_lab.items.add(level_3_access_card)
 current_room=entrance
 inventory=Bag()
 
-
+unlocked_room=false
 
 #binds
 @when("go DIRECTION")
@@ -173,8 +176,10 @@ def use(item):
 		print("We have started the production of a new facility that has the main goal of being the first labratory ever to clone a human being.")
 	elif inventory.find(item)== level_1_access_card and current_room == entrance:
 		print("You went around the room unlocking the doors with the level 1 access card.")
-	elif inventory.find(item)== level_2_access_card and current_room == elevator_1:
-		print("You used the level 2 access card ")
+	elif inventory.find(item)== level_2_access_card and current_room == elevator_1
+		print("You used the level 2 access card now you can go to the top floor")
+	elif inventory.find(item)== level_3_access_card and current_room == elevator_1 or elevator_2
+		print("You used the level 3 access card now you can go to the basement")
 	elif inventory.find(item)== security_id and current_room == computer_lab:
 		print("You scanned the QR code on the ID using the computers extension scanner, a video appears.\n")
 		print("26/5/31: Day 473 working at this dump and finnaly the science team seem to have made a working human clone.")
@@ -188,10 +193,19 @@ def use(item):
 		print("You cant use that item here")
 
 
+@when("use ITEM")
 
 
-
-
+@when("use keycard")
+@when("use card")
+@when("enter card")
+@when("enter keycard")
+@when("enter level 1 access card")
+@when("use level 1 access card")
+def unlocked_room():
+	global unlocked_room
+	if current_room==elevator_1 and inventory.find(item)==level_2_access_card and unlocked_room==false:
+		print("You ")
 
 
 
