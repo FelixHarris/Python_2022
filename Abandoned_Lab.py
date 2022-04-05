@@ -80,13 +80,13 @@ Item.descriptiom=""
 
 level_1_access_card=Item("card","keycard")
 
-level_2_access_card=Item("card","keycard")
+level_2_access_card=Item("card 2","keycard 2")
 
-level_3_access_card=Item("card","keycard")
+level_3_access_card=Item("card 3","keycard 3")
 
-scientist_id=Item("ID","Scientist ID","card","keycard")
+scientist_id=Item("ID","Scientist ID")
 
-security_id=Item("ID","security ID","card")
+security_id=Item("ID 2","security ID",)
 
 hazmat_suit=Item("suit","hazmat suit")
 
@@ -101,8 +101,7 @@ specialized_wet_lab.items.add(level_3_access_card)
 #defines variables
 current_room=entrance
 inventory=Bag()
-
-unlocked_room=false
+entrance_unlocked=False
 
 #binds
 @when("go DIRECTION")
@@ -113,8 +112,13 @@ def travel(direction):
 		print(f"\nYou go {direction}\n")
 		print(current_room)
 		print(current_room.exits())
+		if entrance_unlocked == False and current_room== entrance:
+			print("The doors locked")
+			
 	else:
 		print("You cant go in that direction.")
+		return
+
 
 
 
@@ -176,9 +180,10 @@ def use(item):
 		print("We have started the production of a new facility that has the main goal of being the first labratory ever to clone a human being.")
 	elif inventory.find(item)== level_1_access_card and current_room == entrance:
 		print("You went around the room unlocking the doors with the level 1 access card.")
-	elif inventory.find(item)== level_2_access_card and current_room == elevator_1
+		entrance_unlocked=True
+	elif inventory.find(item)== level_2_access_card and current_room == elevator_1:
 		print("You used the level 2 access card now you can go to the top floor")
-	elif inventory.find(item)== level_3_access_card and current_room == elevator_1 or elevator_2
+	elif inventory.find(item)== level_3_access_card and current_room == elevator_1 or elevator_2:
 		print("You used the level 3 access card now you can go to the basement")
 	elif inventory.find(item)== security_id and current_room == computer_lab:
 		print("You scanned the QR code on the ID using the computers extension scanner, a video appears.\n")
@@ -186,26 +191,11 @@ def use(item):
 		print("Seconds later you hear a muffled voice in the backround.")
 		print("All security personal report to sector C imedietly a second pod has burst open.")
 		print("The video carried on playing for a few minutes but was silent apart from the occasional fear induced scream.")
-	elif inventory.find(item)==hazmat_suit
+	elif inventory.find(item)==hazmat_suit:
 		print("You put the hazmat suit on.")
 
 	else:
 		print("You cant use that item here")
-
-
-@when("use ITEM")
-
-
-@when("use keycard")
-@when("use card")
-@when("enter card")
-@when("enter keycard")
-@when("enter level 1 access card")
-@when("use level 1 access card")
-def unlocked_room():
-	global unlocked_room
-	if current_room==elevator_1 and inventory.find(item)==level_2_access_card and unlocked_room==false:
-		print("You ")
 
 
 
