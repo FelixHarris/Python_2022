@@ -1,6 +1,13 @@
 from adventurelib import*
+import random
+
+
+
 
 Room.items=Bag()
+
+#Room modifications
+Room.add_direction("up","down")
 
 
 #defines room
@@ -19,17 +26,17 @@ computer_lab = Room (""" Computer Lab
 
 #differnt elevators on different floors
 
-elevator_1= Room (""" Elevator
+elevator_1= Room (""" Elevator Floor 1
 	As you enter the elevator you can feel the ground sway, there are 3 buttons on the wall.
 	One button has floor 1 next to it, another button has floor 2 and the last button is unlabled 
 	and seems to have some sort of scanner next to it.""")
 
-elevator_2= Room (""" Elevator
+elevator_2= Room (""" Elevator Floor 2
 	As you enter the elevator you can feel the ground sway, there are 3 buttons on the wall.
 	One button has floor 1 next to it, another button has floor 2 and the last button is unlabled 
 	and seems to have some sort of scanner next to it.""")
 
-elevator_3= Room (""" Elevator
+elevator_3= Room (""" Elevator Basement
 	As you enter the elevator you can feel the ground sway, there are 3 buttons on the wall.
 	One button has floor 1 next to it, another button has floor 2 and the last button is unlabled 
 	and seems to have some sort of scanner next to it.""")
@@ -73,22 +80,32 @@ elevator_3.west=cloning_room
 elevator_2.west=computation_dry_lab
 computation_dry_lab.west=specialized_wet_lab
 specialized_wet_lab.south=security_room
+elevator_1.up=elevator_2
+elevator_1.down=elevator_3
+
+
 
 
 #define items
-Item.descriptiom=""
+Item.description=""
 
 level_1_access_card=Item("card","keycard")
+level_1_access_card.description=("Its a white card with the number 1 on it, that has some sort of bar code on it")
 
 level_2_access_card=Item("card 2","keycard 2")
+level_2_access_card.description=("Its a white card with the number 2 on it, that has some sort of bar code on it")
 
 level_3_access_card=Item("card 3","keycard 3")
+level_3_access_card.description=("Its a white card with the number 3 on it, that has some sort of bar code on it")
 
 scientist_id=Item("ID","Scientist ID")
+scientist_id.description
 
 security_id=Item("ID 2","security ID",)
 
+
 hazmat_suit=Item("suit","hazmat suit")
+
 
 #add items to the bag
 entrance.items.add(level_1_access_card)
@@ -102,6 +119,9 @@ specialized_wet_lab.items.add(level_3_access_card)
 current_room=entrance
 inventory=Bag()
 entrance_unlocked=False
+jump_list=["Boing","You jumped","Why?","Up, up and away"]
+
+
 
 #binds
 @when("go DIRECTION")
@@ -111,16 +131,19 @@ def travel(direction):
 		current_room=current_room.exit(direction)
 		print(f"\nYou go {direction}\n")
 		print(current_room)
-		print(current_room.exits())
-		if entrance_unlocked == False and current_room== entrance:
-			print("The doors locked")
-			
+		print(current_room.exits())			
 	else:
-		print("You cant go in that direction.")
-		return
+		print("You cant go that way")
 
 
+@when("jump")
+def jump():
+	print(random.choice(jump_list))
 
+@when("boogie")
+@when("dance")
+def dance():
+	print("You begin to lose yourself in the groove.")
 
 @when("look")
 def look():
@@ -148,7 +171,7 @@ def pickup(item):
 
 
 
-
+#Show inventory
 @when("i")
 @when("inventory")
 @when("show inventory")
@@ -159,7 +182,7 @@ def player_inventory():
 	for item in inventory:
 		print(item)
 
-
+#show item
 @when("look at ITEM")
 def look_at(item):
 	if item in inventory:
@@ -207,13 +230,14 @@ def use(item):
 
 
 
+ 
 
 
 
 
 
 
-
+print(current_room)
 
 
 
