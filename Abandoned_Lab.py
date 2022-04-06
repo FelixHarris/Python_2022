@@ -118,33 +118,43 @@ specialized_wet_lab.items.add(level_3_access_card)
 #defines variables
 current_room=entrance
 inventory=Bag()
-entrance_unlocked=False
 jump_list=["Boing","You jumped","Why?","Up, up and away"]
 
 
 
 #binds
+#This code 
 @when("go DIRECTION")
 def travel(direction):
 	global current_room
+
+
+	if current_room==entrance and direction=="east":
+		print("The door is locked")
+		return
+		print(current_room)
 	if direction in current_room.exits():
 		current_room=current_room.exit(direction)
 		print(f"\nYou go {direction}\n")
 		print(current_room)
-		print(current_room.exits())			
+		print(current_room.exits())		
+
 	else:
 		print("You cant go that way")
 
-
+#This code chooses one of the 4 jump options from the jump list.
 @when("jump")
 def jump():
 	print(random.choice(jump_list))
 
+
+
+#Tis code allows the player to dance.
 @when("boogie")
 @when("dance")
 def dance():
 	print("You begin to lose yourself in the groove.")
-
+#
 @when("look")
 def look():
 	print(current_room)
@@ -157,7 +167,7 @@ def look():
 
 
 
-
+#This code allows you to obtain an item.
 @when("get ITEM")
 @when("take ITEM")
 @when("pick up ITEM")
@@ -197,13 +207,13 @@ def look_at(item):
 @when("use ITEM")
 def use(item):
 	if inventory.find(item) == scientist_id and current_room == computer_lab:
+		#This text here will give you a code later on in the game
 		print("You scanned the QR code on the ID using the computers extension scanner, a message appears.\n")
 		print("21/10/27: Hello this is Pedro the founder of Synthetic Science Industries.")
 		print("Today we are aiming to change this world forever by starting our research into the realm of cloning technology.")
 		print("We have started the production of a new facility that has the main goal of being the first labratory ever to clone a human being.")
 	elif inventory.find(item)== level_1_access_card and current_room == entrance:
 		print("You went around the room unlocking the doors with the level 1 access card.")
-		entrance_unlocked=True
 	elif inventory.find(item)== level_2_access_card and current_room == elevator_1:
 		print("You used the level 2 access card now you can go to the top floor")
 	elif inventory.find(item)== level_3_access_card and current_room == elevator_1 or elevator_2:
@@ -231,13 +241,12 @@ def use(item):
 
 
  
-
-
-
-
-
-
 print(current_room)
+
+
+
+
+
 
 
 
